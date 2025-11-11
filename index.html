@@ -23,6 +23,10 @@
             <a href="#">Мастера</a>
             <a href="#">Контакты</a>
         </div>
+        <!-- Иконка гамбургера -->
+        <div class="menu-toggle" id="menuToggle">
+            <div class="menu-icon">☰</div>
+        </div>
     </nav>
 
     <section class="hero">
@@ -67,5 +71,13 @@
             <p>Телефон: +7 (XXX) XXX-XX-XX</p>
         </div>
     </footer>
+
+    <script>
+        // JavaScript для меню
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const nav = document.querySelector('.nav');
+            nav.classList.toggle('nav-active');
+        });
+    </script>
 </body>
 </html>
