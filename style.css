@@ -18,24 +18,26 @@ body {
 
 /* НОВЫЙ ХЕДЕР С ФОНОВОЙ ИКОНКОЙ */
 .header {
-    background: url('icon/heder-icon') no-repeat center center;
+    background: url('icon/header-icon.png') no-repeat center center;
     background-size: cover;
-    height: 200px; /* Высота хедера */
+    height: 200px;
     position: relative;
     width: 100%;
+    border-bottom: 3px solid #b2ebf2;
 }
 
 /* ЛОГОТИП ПОВЕРХ ХЕДЕРА */
 .logo {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 20px;
-    height: 160px; /* Почти вся высота хедера */
+    height: 180px;
 }
 
 .logo img {
     height: 100%;
     width: auto;
+    max-width: none;
 }
 
 /* МЕНЮ ПОД ХЕДЕРОМ */
@@ -65,13 +67,13 @@ body {
     color: #b2ebf2;
 }
 
-/* Баннер - добавляем отступ сверху из-за меню */
+/* Баннер */
 .hero {
     background: linear-gradient(135deg, #b2ebf2, #e1bee7);
     padding: 100px 0 80px;
     text-align: center;
     color: white;
-    margin-top: 0; /* Убираем старый отступ */
+    margin-top: 0;
 }
 
 .hero h1 {
@@ -93,6 +95,12 @@ body {
     font-size: 1.1rem;
     cursor: pointer;
     font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 204, 188, 0.4);
 }
 
 /* Услуги */
@@ -120,11 +128,13 @@ body {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(178, 235, 242, 0.2);
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #f0f0f0;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(178, 235, 242, 0.2);
 }
 
 .service-icon {
@@ -133,8 +143,14 @@ body {
 }
 
 .service-card h3 {
+    color: #424242;
     margin-bottom: 1rem;
     font-size: 1.3rem;
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.5;
 }
 
 /* Футер */
@@ -145,6 +161,10 @@ body {
     padding: 2rem 0;
 }
 
+.footer p {
+    margin-bottom: 0.5rem;
+}
+
 /* Для телефона */
 @media (max-width: 768px) {
     .header {
@@ -153,6 +173,8 @@ body {
     
     .logo {
         height: 120px;
+        top: 5px;
+        left: 10px;
     }
     
     .nav {
