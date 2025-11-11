@@ -45,17 +45,13 @@ body {
     background: white;
     box-shadow: 0 2px 10px rgba(178, 235, 242, 0.2);
     padding: 1rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    text-align: center;
 }
 
 .nav {
     display: flex;
     justify-content: center;
     gap: 3rem;
-    transition: all 0.3s ease;
 }
 
 .nav a {
@@ -69,29 +65,6 @@ body {
 
 .nav a:hover {
     color: #b2ebf2;
-}
-
-/* ИКОНКА ГАМБУРГЕРА */
-.menu-toggle {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    display: none; /* Сначала скрыта */
-}
-
-.menu-icon {
-    font-size: 1.5rem;
-    color: #424242;
-    padding: 0.5rem;
-    background: #f0f0f0;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.menu-icon:hover {
-    background: #b2ebf2;
 }
 
 /* Баннер */
@@ -192,7 +165,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* АДАПТИВ ДЛЯ ТЕЛЕФОНА */
+/* Для телефона */
 @media (max-width: 768px) {
     .header {
         height: 150px;
@@ -204,43 +177,14 @@ body {
         left: 10px;
     }
     
-    /* Скрываем обычное меню, показываем иконку */
     .nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        gap: 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        z-index: 1000;
-    }
-    
-    .nav-active {
-        display: flex !important;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
     
     .nav a {
-        display: block;
-        padding: 1rem;
-        text-align: center;
-        border-bottom: 1px solid #f0f0f0;
-        margin: 0;
-    }
-    
-    .nav a:last-child {
-        border-bottom: none;
-    }
-    
-    .menu-toggle {
-        display: block; /* Показываем иконку на телефоне */
-    }
-    
-    .nav-menu {
-        justify-content: space-between;
-        padding: 1rem;
+        font-size: 1rem;
+        padding: 0.5rem;
     }
     
     .hero h1 {
@@ -251,3 +195,4 @@ body {
         grid-template-columns: 1fr;
     }
 }
+-
