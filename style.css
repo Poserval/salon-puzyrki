@@ -29,9 +29,9 @@ body {
 /* ЛОГОТИП ПОВЕРХ ХЕДЕРА */
 .logo {
     position: absolute;
-    top: 5px;
+    top: 1px;
     left: 20px;
-    height: 300px;
+    height: 250px;
 }
 
 .logo img {
