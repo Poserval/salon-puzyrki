@@ -16,22 +16,27 @@ body {
     padding: 0 20px;
 }
 
-/* НОВЫЙ ХЕДЕР С ФОНОВОЙ ИКОНКОЙ */
+/* Шапка */
 .header {
     background: url('icon/header-icon.png') no-repeat center center;
     background-size: cover;
     height: 200px;
     position: relative;
     width: 100%;
-    border-bottom: 3px solid #b2ebf2;
 }
 
-/* ЛОГОТИП ПОВЕРХ ХЕДЕРА */
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
 .logo {
     position: absolute;
-    top: 10px;
-    left: 20px;
-    height: 180px;
+    top: 1px;
+    left: 10px;
+    height: 250px;
 }
 
 .logo img {
@@ -40,12 +45,13 @@ body {
     max-width: none;
 }
 
-/* МЕНЮ ПОД ХЕДЕРОМ */
+/* Меню под хедером */
 .nav-menu {
     background: white;
     box-shadow: 0 2px 10px rgba(178, 235, 242, 0.2);
     padding: 1rem 0;
     text-align: center;
+    position: relative;
 }
 
 .nav {
@@ -67,7 +73,34 @@ body {
     color: #b2ebf2;
 }
 
-/* Баннер */
+/* Иконка квадрата */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+.menu-icon {
+    font-size: 1.8rem;
+    color: #424242;
+    padding: 0.5rem;
+    background: #f0f0f0;
+    border-radius: 8px;
+    border: 2px solid #b2ebf2;
+    transition: all 0.3s;
+    display: block;
+}
+
+.menu-icon:hover {
+    background: #b2ebf2;
+    color: white;
+}
+
+/* Главный баннер */
 .hero {
     background: linear-gradient(135deg, #b2ebf2, #e1bee7);
     padding: 100px 0 80px;
@@ -95,12 +128,6 @@ body {
     font-size: 1.1rem;
     cursor: pointer;
     font-weight: bold;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 204, 188, 0.4);
 }
 
 /* Услуги */
@@ -128,13 +155,11 @@ body {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(178, 235, 242, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid #f0f0f0;
+    transition: transform 0.3s;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(178, 235, 242, 0.2);
 }
 
 .service-icon {
@@ -143,14 +168,8 @@ body {
 }
 
 .service-card h3 {
-    color: #424242;
     margin-bottom: 1rem;
     font-size: 1.3rem;
-}
-
-.service-card p {
-    color: #666;
-    line-height: 1.5;
 }
 
 /* Футер */
@@ -165,7 +184,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* Для телефона */
+/* Мобильное меню */
 @media (max-width: 768px) {
     .header {
         height: 150px;
@@ -177,14 +196,59 @@ body {
         left: 10px;
     }
     
+    .menu-toggle {
+        display: block;
+    }
+    
     .nav {
-        flex-wrap: wrap;
-        gap: 1rem;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        padding: 80px 0 2rem 0;
+        transition: right 0.3s ease;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .nav-active {
+        right: 0 !important;
     }
     
     .nav a {
-        font-size: 1rem;
-        padding: 0.5rem;
+        display: block;
+        padding: 1rem 2rem;
+        text-align: center;
+        border-bottom: 1px solid #f0f0f0;
+        margin: 0;
+        width: 100%;
+        font-size: 1.1rem;
+    }
+    
+    .nav a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-menu {
+        justify-content: center;
+    }
+    
+    /* Затемнение фона при открытом меню */
+    .nav-active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
     }
     
     .hero h1 {
@@ -193,5 +257,28 @@ body {
     
     .services-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Для компьютера */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
+    }
+    
+    .nav {
+        display: flex !important;
+        position: static !important;
+        height: auto !important;
+        width: auto !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        flex-direction: row !important;
+    }
+    
+    .nav a {
+        border-bottom: none !important;
+        width: auto !important;
     }
 }
