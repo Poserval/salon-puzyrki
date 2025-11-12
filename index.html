@@ -17,11 +17,15 @@
 
     <!-- Меню под хедером -->
     <nav class="nav-menu">
-        <div class="nav">
+        <div class="nav" id="mainNav">
             <a href="#">Главная</a>
             <a href="#">Услуги</a>
             <a href="#">Мастера</a>
             <a href="#">Контакты</a>
+        </div>
+        <!-- Иконка квадрата -->
+        <div class="menu-toggle" id="menuToggle">
+            <div class="menu-icon">■</div>
         </div>
     </nav>
 
@@ -67,5 +71,33 @@
             <p>Телефон: +7 (XXX) XXX-XX-XX</p>
         </div>
     </footer>
+
+    <script>
+        // JavaScript для мобильного меню
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('nav-active');
+            
+            // Блокировка прокрутки при открытом меню
+            if (nav.classList.contains('nav-active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Закрытие меню при клике вне его области
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.getElementById('menuToggle');
+            
+            if (nav.classList.contains('nav-active') && 
+                !nav.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                nav.classList.remove('nav-active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
 </body>
 </html>
