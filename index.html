@@ -17,15 +17,16 @@
 
     <!-- Меню под хедером -->
     <nav class="nav-menu">
+        <!-- Иконка меню -->
+        <div class="menu-toggle" id="menuToggle">
+            <img src="icon/menu-icon.png" alt="Меню" class="menu-icon">
+        </div>
+        <!-- Менюшки выезжают из иконки -->
         <div class="nav" id="mainNav">
             <a href="#">Главная</a>
             <a href="#">Услуги</a>
             <a href="#">Мастера</a>
             <a href="#">Контакты</a>
-        </div>
-        <!-- Иконка меню -->
-        <div class="menu-toggle" id="menuToggle">
-            <img src="icon/menu-icon.png" alt="Меню" class="menu-icon">
         </div>
     </nav>
 
@@ -76,20 +77,7 @@
         // JavaScript для мобильного меню
         document.getElementById('menuToggle').addEventListener('click', function() {
             const nav = document.getElementById('mainNav');
-            const links = nav.querySelectorAll('a');
-            
             nav.classList.toggle('nav-active');
-            
-            // Анимация появления ссылок одна за другой
-            if (nav.classList.contains('nav-active')) {
-                links.forEach((link, index) => {
-                    link.style.animation = `slideInRight 0.3s ease ${index * 0.1}s forwards`;
-                });
-            } else {
-                links.forEach((link, index) => {
-                    link.style.animation = `slideOutRight 0.3s ease ${index * 0.1}s forwards`;
-                });
-            }
         });
     </script>
 </body>
