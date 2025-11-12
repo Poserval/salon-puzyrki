@@ -23,9 +23,9 @@
             <a href="#">Мастера</a>
             <a href="#">Контакты</a>
         </div>
-        <!-- Иконка квадрата -->
+        <!-- Иконка меню -->
         <div class="menu-toggle" id="menuToggle">
-            <div class="menu-icon">■</div>
+            <img src="icon/menu-icon.png" alt="Меню" class="menu-icon">
         </div>
     </nav>
 
@@ -76,26 +76,19 @@
         // JavaScript для мобильного меню
         document.getElementById('menuToggle').addEventListener('click', function() {
             const nav = document.getElementById('mainNav');
+            const links = nav.querySelectorAll('a');
+            
             nav.classList.toggle('nav-active');
             
-            // Блокировка прокрутки при открытом меню
+            // Анимация появления ссылок одна за другой
             if (nav.classList.contains('nav-active')) {
-                document.body.style.overflow = 'hidden';
+                links.forEach((link, index) => {
+                    link.style.animation = `slideInRight 0.3s ease ${index * 0.1}s forwards`;
+                });
             } else {
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Закрытие меню при клике вне его области
-        document.addEventListener('click', function(event) {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.getElementById('menuToggle');
-            
-            if (nav.classList.contains('nav-active') && 
-                !nav.contains(event.target) && 
-                !toggle.contains(event.target)) {
-                nav.classList.remove('nav-active');
-                document.body.style.overflow = '';
+                links.forEach((link, index) => {
+                    link.style.animation = `slideOutRight 0.3s ease ${index * 0.1}s forwards`;
+                });
             }
         });
     </script>
