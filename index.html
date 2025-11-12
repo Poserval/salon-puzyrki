@@ -4,18 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Салон красоты "Пузырьки"</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* БАЗОВЫЕ СТИЛИ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; color: #424242; background: #fefefe; }
+        
+        /* ХЕДЕР */
+        .header { 
+            background: linear-gradient(135deg, #b2ebf2, #e1bee7);
+            height: 200px; 
+            position: relative;
+        }
+        .logo { 
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            height: 180px;
+        }
+        .logo img { height: 100%; width: auto; }
+        
+        /* МЕНЮ */
+        .nav-menu {
+            background: white;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav { display: flex; gap: 2rem; }
+        .nav a { text-decoration: none; color: #424242; font-weight: bold; }
+        
+        /* ИКОНКА - ВСЕГДА ВИДНА */
+        .menu-toggle { display: block; cursor: pointer; }
+        .menu-icon { 
+            font-size: 1.5rem; 
+            padding: 0.5rem; 
+            background: #f0f0f0; 
+            border: 2px solid #b2ebf2;
+            border-radius: 5px;
+        }
+        
+        /* ОСНОВНЫЕ БЛОКИ */
+        .hero {
+            background: linear-gradient(135deg, #b2ebf2, #e1bee7);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+        .btn {
+            background: #ffccbc;
+            color: #424242;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        .services { padding: 80px 20px; background: #fafafa; text-align: center; }
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 2rem;
+        }
+        .service-card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .footer { background: #424242; color: white; padding: 2rem; text-align: center; }
+        
+        /* ДЛЯ ТЕЛЕФОНА */
+        @media (max-width: 768px) {
+            .nav { 
+                display: none; 
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .nav-active { display: flex !important; }
+        }
+        
+        /* ДЛЯ КОМПЬЮТЕРА */
+        @media (min-width: 769px) {
+            .menu-toggle { display: none !important; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Хедер с фоновой иконкой -->
     <header class="header">
-        <!-- Логотип поверх хедера -->
         <div class="logo">
             <img src="icon/logo-icon.png" alt="Пузырьки">
         </div>
     </header>
 
-    <!-- Меню под хедером -->
     <nav class="nav-menu">
         <div class="nav" id="mainNav">
             <a href="#">Главная</a>
@@ -23,60 +111,51 @@
             <a href="#">Мастера</a>
             <a href="#">Контакты</a>
         </div>
-        <!-- Иконка гамбургера -->
         <div class="menu-toggle" id="menuToggle">
             <div class="menu-icon">☰</div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="container">
-            <h1>Салон красоты "Пузырьки"</h1>
-            <p>Место, где рождается ваша красота и уверенность</p>
-            <button class="btn">Записаться онлайн</button>
-        </div>
+        <h1>Салон красоты "Пузырьки"</h1>
+        <p>Место, где рождается ваша красота и уверенность</p>
+        <button class="btn">Записаться онлайн</button>
     </section>
 
     <section class="services">
-        <div class="container">
-            <h2>Наши услуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💇</div>
-                    <h3>Парикмахерские услуги</h3>
-                    <p>Стрижки, укладки, окрашивание</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💅</div>
-                    <h3>Ногтевой сервис</h3>
-                    <p>Маникюр, педикюр, дизайн</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✨</div>
-                    <h3>Косметология</h3>
-                    <p>Уходовые процедуры</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>Визаж</h3>
-                    <p>Профессиональный макияж</p>
-                </div>
+        <h2>Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div style="font-size: 3rem;">💇</div>
+                <h3>Парикмахерские услуги</h3>
+                <p>Стрижки, укладки, окрашивание</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem;">💅</div>
+                <h3>Ногтевой сервис</h3>
+                <p>Маникюр, педикюр, дизайн</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem;">✨</div>
+                <h3>Косметология</h3>
+                <p>Уходовые процедуры</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem;">🎨</div>
+                <h3>Визаж</h3>
+                <p>Профессиональный макияж</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="container">
-            <p>© 2024 Салон красоты "Пузырьки"</p>
-            <p>Телефон: +7 (XXX) XXX-XX-XX</p>
-        </div>
+        <p>© 2024 Салон красоты "Пузырьки"</p>
+        <p>Телефон: +7 (XXX) XXX-XX-XX</p>
     </footer>
 
     <script>
-        // JavaScript для меню
         document.getElementById('menuToggle').addEventListener('click', function() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('nav-active');
+            document.getElementById('mainNav').classList.toggle('nav-active');
         });
     </script>
 </body>
