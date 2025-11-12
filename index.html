@@ -75,10 +75,40 @@
 
     <script>
         // JavaScript для мобильного меню
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            const nav = document.getElementById('mainNav');
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('mainNav');
+        let autoShowExecuted = false;
+
+        // Функция показа/скрытия меню
+        function toggleMenu() {
             nav.classList.toggle('nav-active');
+        }
+
+        // Клик по иконке
+        menuToggle.addEventListener('click', function() {
+            toggleMenu();
+            autoShowExecuted = true; // Отменяем авто-показ если пользователь сам нажал
         });
+
+        // Автоматический показ через 5 секунд на мобильных устройствах
+        function autoShowMenu() {
+            if (window.innerWidth <= 768 && !autoShowExecuted && !nav.classList.contains('nav-active')) {
+                setTimeout(function() {
+                    if (!nav.classList.contains('nav-active') && !autoShowExecuted) {
+                        nav.classList.add('nav-active');
+                        autoShowExecuted = true;
+                    }
+                }, 5000);
+            }
+        }
+
+        // Запускаем авто-показ при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            autoShowMenu();
+        });
+
+        // Также запускаем при изменении размера окна (на случай ориентации)
+        window.addEventListener('resize', autoShowMenu);
     </script>
 </body>
 </html>
