@@ -99,35 +99,61 @@ body {
     transition: transform 0.3s;
 }
 
-/* Анимации для выезда меню */
-@keyframes slideFromIcon {
-    from {
-        opacity: 0;
-        transform: translateX(15px) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-}
-
-/* Главный баннер */
+/* Герой-слайдер */
 .hero {
-    background: linear-gradient(135deg, #b2ebf2, #e1bee7);
-    padding: 100px 0 80px;
-    text-align: center;
-    color: white;
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
     margin-top: 0;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.hero-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.hero-slider img.active {
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    background: rgba(0,0,0,0.4);
+    border-radius: 15px;
+    margin: 0 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .btn {
@@ -139,6 +165,65 @@ body {
     font-size: 1.1rem;
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 204, 188, 0.4);
+    background: #ffbbaa;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 3;
+}
+
+.slider-prev,
+.slider-next {
+    background: rgba(255,255,255,0.3);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.slider-dot.active {
+    background: white;
 }
 
 /* Услуги */
@@ -166,11 +251,13 @@ body {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(178, 235, 242, 0.2);
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #f0f0f0;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(178, 235, 242, 0.2);
 }
 
 .service-icon {
@@ -195,6 +282,18 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Анимации для меню */
+@keyframes slideFromIcon {
+    from {
+        opacity: 0;
+        transform: translateX(15px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
 /* Мобильное меню - ВЫЕЗД ИЗ ИКОНКИ */
 @media (max-width: 768px) {
     .header {
@@ -216,7 +315,7 @@ body {
         display: none;
         position: absolute;
         top: 50%;
-        right: 55px; /* Сдвинули левее чтобы не наползали на иконку */
+        right: 55px;
         transform: translateY(-50%);
         background: transparent;
         flex-direction: row;
@@ -248,8 +347,17 @@ body {
     .nav-active a:nth-child(3) { animation-delay: 0.3s; }
     .nav-active a:nth-child(4) { animation-delay: 0.4s; }
     
-    .hero h1 {
-        font-size: 2rem;
+    .hero {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
     }
     
     .services-grid {
@@ -285,5 +393,9 @@ body {
     .nav-menu {
         justify-content: center;
         padding-right: 0;
+    }
+    
+    .hero {
+        height: 80vh;
     }
 }
