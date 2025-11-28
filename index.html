@@ -30,11 +30,22 @@
         </div>
     </nav>
 
+    <!-- Герой-слайдер -->
     <section class="hero">
-        <div class="container">
+        <div class="hero-slider" id="heroSlider">
+            <!-- Фото будут добавляться через JS -->
+        </div>
+        <div class="hero-content">
             <h1>Салон красоты "Пузырьки"</h1>
             <p>Место, где рождается ваша красота и уверенность</p>
             <button class="btn">Записаться онлайн</button>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-prev">‹</button>
+            <div class="slider-dots" id="sliderDots">
+                <!-- Точки навигации -->
+            </div>
+            <button class="slider-next">›</button>
         </div>
     </section>
 
@@ -79,18 +90,15 @@
         const nav = document.getElementById('mainNav');
         let autoShowExecuted = false;
 
-        // Функция показа/скрытия меню
         function toggleMenu() {
             nav.classList.toggle('nav-active');
         }
 
-        // Клик по иконке
         menuToggle.addEventListener('click', function() {
             toggleMenu();
-            autoShowExecuted = true; // Отменяем авто-показ если пользователь сам нажал
+            autoShowExecuted = true;
         });
 
-        // Автоматический показ через 5 секунд на мобильных устройствах
         function autoShowMenu() {
             if (window.innerWidth <= 768 && !autoShowExecuted && !nav.classList.contains('nav-active')) {
                 setTimeout(function() {
@@ -102,13 +110,93 @@
             }
         }
 
-        // Запускаем авто-показ при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             autoShowMenu();
         });
 
-        // Также запускаем при изменении размера окна (на случай ориентации)
         window.addEventListener('resize', autoShowMenu);
+
+        // Слайдер для героя
+        const heroPhotos = [
+            'icon/hero/mobile/photo1.jpg',
+            'icon/hero/mobile/photo2.jpg', 
+            'icon/hero/mobile/photo3.jpg'
+        ];
+        
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function initSlider() {
+            const slider = document.getElementById('heroSlider');
+            const dotsContainer = document.getElementById('sliderDots');
+            
+            // Создаем слайды
+            heroPhotos.forEach((photo, index) => {
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = `Салон красоты Пузырьки ${index + 1}`;
+                if (index === 0) img.classList.add('active');
+                slider.appendChild(img);
+                
+                // Создаем точки
+                const dot = document.createElement('button');
+                dot.classList.add('slider-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Автопереключение
+            startAutoSlide();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+        
+        function updateSlider() {
+            const slides = document.querySelectorAll('.hero-slider img');
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % heroPhotos.length;
+            updateSlider();
+        }
+        
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 10000); // 10 секунд
+        }
+        
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+        
+        // Инициализация слайдера
+        document.addEventListener('DOMContentLoaded', initSlider);
+        
+        // Кнопки навигации слайдера
+        document.querySelector('.slider-prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + heroPhotos.length) % heroPhotos.length;
+            updateSlider();
+            resetAutoSlide();
+        });
+        
+        document.querySelector('.slider-next').addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
     </script>
 </body>
 </html>
