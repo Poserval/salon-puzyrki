@@ -33,7 +33,7 @@
     <!-- Герой-слайдер -->
     <section class="hero">
         <div class="hero-slider" id="heroSlider">
-            <!-- Фото будут добавляться через JS -->
+            <!-- Фото добавляются через JS -->
         </div>
         <div class="hero-content">
             <h1>Салон красоты "Пузырьки"</h1>
@@ -43,7 +43,7 @@
         <div class="slider-controls">
             <button class="slider-prev">‹</button>
             <div class="slider-dots" id="sliderDots">
-                <!-- Точки навигации -->
+                <!-- Точки добавляются через JS -->
             </div>
             <button class="slider-next">›</button>
         </div>
@@ -110,17 +110,14 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            autoShowMenu();
-        });
-
-        window.addEventListener('resize', autoShowMenu);
-
         // Слайдер для героя
         const heroPhotos = [
             'icon/hero/mobile/photo1.jpg',
             'icon/hero/mobile/photo2.jpg', 
-            'icon/hero/mobile/photo3.jpg'
+            'icon/hero/mobile/photo3.jpg',
+            'icon/hero/mobile/photo4.jpg',
+            'icon/hero/mobile/photo5.jpg',
+            'icon/hero/mobile/photo6.jpg'
         ];
         
         let currentSlide = 0;
@@ -129,13 +126,19 @@
         function initSlider() {
             const slider = document.getElementById('heroSlider');
             const dotsContainer = document.getElementById('sliderDots');
+            const heroContent = document.querySelector('.hero-content');
             
             // Создаем слайды
             heroPhotos.forEach((photo, index) => {
                 const img = document.createElement('img');
                 img.src = photo;
                 img.alt = `Салон красоты Пузырьки ${index + 1}`;
-                if (index === 0) img.classList.add('active');
+                if (index === 0) {
+                    img.classList.add('active');
+                    heroContent.style.display = 'block';
+                } else {
+                    heroContent.style.display = 'none';
+                }
                 slider.appendChild(img);
                 
                 // Создаем точки
@@ -151,9 +154,17 @@
         }
         
         function goToSlide(index) {
+            const heroContent = document.querySelector('.hero-content');
             currentSlide = index;
             updateSlider();
             resetAutoSlide();
+            
+            // Показываем надписи только на первом слайде
+            if (index === 0) {
+                heroContent.style.display = 'block';
+            } else {
+                heroContent.style.display = 'none';
+            }
         }
         
         function updateSlider() {
@@ -170,8 +181,16 @@
         }
         
         function nextSlide() {
+            const heroContent = document.querySelector('.hero-content');
             currentSlide = (currentSlide + 1) % heroPhotos.length;
             updateSlider();
+            
+            // Показываем надписи только на первом слайде
+            if (currentSlide === 0) {
+                heroContent.style.display = 'block';
+            } else {
+                heroContent.style.display = 'none';
+            }
         }
         
         function startAutoSlide() {
@@ -183,14 +202,26 @@
             startAutoSlide();
         }
         
-        // Инициализация слайдера
-        document.addEventListener('DOMContentLoaded', initSlider);
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            autoShowMenu();
+            initSlider();
+        });
+        
+        window.addEventListener('resize', autoShowMenu);
         
         // Кнопки навигации слайдера
         document.querySelector('.slider-prev').addEventListener('click', () => {
+            const heroContent = document.querySelector('.hero-content');
             currentSlide = (currentSlide - 1 + heroPhotos.length) % heroPhotos.length;
             updateSlider();
             resetAutoSlide();
+            
+            if (currentSlide === 0) {
+                heroContent.style.display = 'block';
+            } else {
+                heroContent.style.display = 'none';
+            }
         });
         
         document.querySelector('.slider-next').addEventListener('click', () => {
