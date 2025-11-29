@@ -85,149 +85,153 @@
     </footer>
 
     <script>
-        // JavaScript для мобильного меню
-        const menuToggle = document.getElementById('menuToggle');
-        const nav = document.getElementById('mainNav');
-        let autoShowExecuted = false;
+    // JavaScript для мобильного меню
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    let autoShowExecuted = false;
 
-        function toggleMenu() {
-            nav.classList.toggle('nav-active');
-        }
+    function toggleMenu() {
+        nav.classList.toggle('nav-active');
+    }
 
-        menuToggle.addEventListener('click', function() {
-            toggleMenu();
-            autoShowExecuted = true;
-        });
+    menuToggle.addEventListener('click', function() {
+        toggleMenu();
+        autoShowExecuted = true;
+    });
 
-        function autoShowMenu() {
-            if (window.innerWidth <= 768 && !autoShowExecuted && !nav.classList.contains('nav-active')) {
-                setTimeout(function() {
-                    if (!nav.classList.contains('nav-active') && !autoShowExecuted) {
-                        nav.classList.add('nav-active');
-                        autoShowExecuted = true;
-                    }
-                }, 5000);
-            }
-        }
-
-        // Слайдер для героя
-        const heroPhotos = [
-            'icon/hero/mobile/photo1.jpg',
-            'icon/hero/mobile/photo2.jpg', 
-            'icon/hero/mobile/photo3.jpg',
-            'icon/hero/mobile/photo4.jpg',
-            'icon/hero/mobile/photo5.jpg',
-            'icon/hero/mobile/photo6.jpg'
-        ];
-        
-        let currentSlide = 0;
-        let slideInterval;
-        
-        function initSlider() {
-            const slider = document.getElementById('heroSlider');
-            const dotsContainer = document.getElementById('sliderDots');
-            const heroContent = document.querySelector('.hero-content');
-            
-            // Создаем слайды
-            heroPhotos.forEach((photo, index) => {
-                const img = document.createElement('img');
-                img.src = photo;
-                img.alt = `Салон красоты Пузырьки ${index + 1}`;
-                if (index === 0) {
-                    img.classList.add('active');
-                    heroContent.style.display = 'block';
-                } else {
-                    heroContent.style.display = 'none';
+    function autoShowMenu() {
+        if (window.innerWidth <= 768 && !autoShowExecuted && !nav.classList.contains('nav-active')) {
+            setTimeout(function() {
+                if (!nav.classList.contains('nav-active') && !autoShowExecuted) {
+                    nav.classList.add('nav-active');
+                    autoShowExecuted = true;
                 }
-                slider.appendChild(img);
-                
-                // Создаем точки
-                const dot = document.createElement('button');
-                dot.classList.add('slider-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-            
-            // Автопереключение
-            startAutoSlide();
+            }, 5000);
         }
+    }
+
+    // Слайдер для героя
+    const heroPhotos = [
+        'icon/hero/mobile/Photo1.jpg',
+        'icon/hero/mobile/Photo2.jpg', 
+        'icon/hero/mobile/Photo3.jpg',
+        'icon/hero/mobile/Photo4.jpg',
+        'icon/hero/mobile/Photo5.jpg',
+        'icon/hero/mobile/Photo6.jpg'
+    ];
+    
+    let currentSlide = 0;
+    let slideInterval;
+    
+    function initSlider() {
+        const slider = document.getElementById('heroSlider');
+        const dotsContainer = document.getElementById('sliderDots');
+        const heroContent = document.querySelector('.hero-content');
         
-        function goToSlide(index) {
-            const heroContent = document.querySelector('.hero-content');
-            currentSlide = index;
-            updateSlider();
-            resetAutoSlide();
-            
-            // Показываем надписи только на первом слайде
+        // Проверяем доступность фото
+        console.log('Загружаем фото:', heroPhotos);
+        
+        // Создаем слайды
+        heroPhotos.forEach((photo, index) => {
+            const img = new Image();
+            img.src = photo;
+            img.alt = `Салон красоты Пузырьки ${index + 1}`;
+            img.onerror = function() {
+                console.error('Ошибка загрузки фото:', photo);
+            };
             if (index === 0) {
+                img.classList.add('active');
                 heroContent.style.display = 'block';
-            } else {
-                heroContent.style.display = 'none';
             }
-        }
-        
-        function updateSlider() {
-            const slides = document.querySelectorAll('.hero-slider img');
-            const dots = document.querySelectorAll('.slider-dot');
+            slider.appendChild(img);
             
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentSlide);
-            });
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-        
-        function nextSlide() {
-            const heroContent = document.querySelector('.hero-content');
-            currentSlide = (currentSlide + 1) % heroPhotos.length;
-            updateSlider();
-            
-            // Показываем надписи только на первом слайде
-            if (currentSlide === 0) {
-                heroContent.style.display = 'block';
-            } else {
-                heroContent.style.display = 'none';
-            }
-        }
-        
-        function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, 10000); // 10 секунд
-        }
-        
-        function resetAutoSlide() {
-            clearInterval(slideInterval);
-            startAutoSlide();
-        }
-        
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            autoShowMenu();
-            initSlider();
+            // Создаем точки
+            const dot = document.createElement('button');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
         });
         
-        window.addEventListener('resize', autoShowMenu);
+        // Автопереключение
+        startAutoSlide();
+    }
+    
+    function goToSlide(index) {
+        const heroContent = document.querySelector('.hero-content');
+        currentSlide = index;
+        updateSlider();
+        resetAutoSlide();
         
-        // Кнопки навигации слайдера
-        document.querySelector('.slider-prev').addEventListener('click', () => {
-            const heroContent = document.querySelector('.hero-content');
-            currentSlide = (currentSlide - 1 + heroPhotos.length) % heroPhotos.length;
-            updateSlider();
-            resetAutoSlide();
-            
-            if (currentSlide === 0) {
-                heroContent.style.display = 'block';
-            } else {
-                heroContent.style.display = 'none';
-            }
+        // Показываем надписи только на первом слайде
+        if (index === 0) {
+            heroContent.style.display = 'block';
+        } else {
+            heroContent.style.display = 'none';
+        }
+    }
+    
+    function updateSlider() {
+        const slides = document.querySelectorAll('.hero-slider img');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
         });
         
-        document.querySelector('.slider-next').addEventListener('click', () => {
-            nextSlide();
-            resetAutoSlide();
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
         });
+    }
+    
+    function nextSlide() {
+        const heroContent = document.querySelector('.hero-content');
+        currentSlide = (currentSlide + 1) % heroPhotos.length;
+        updateSlider();
+        
+        // Показываем надписи только на первом слайде
+        if (currentSlide === 0) {
+            heroContent.style.display = 'block';
+        } else {
+            heroContent.style.display = 'none';
+        }
+    }
+    
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 10000);
+    }
+    
+    function resetAutoSlide() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+    
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        autoShowMenu();
+        initSlider();
+    });
+    
+    window.addEventListener('resize', autoShowMenu);
+    
+    // Кнопки навигации слайдера
+    document.querySelector('.slider-prev').addEventListener('click', () => {
+        const heroContent = document.querySelector('.hero-content');
+        currentSlide = (currentSlide - 1 + heroPhotos.length) % heroPhotos.length;
+        updateSlider();
+        resetAutoSlide();
+        
+        if (currentSlide === 0) {
+            heroContent.style.display = 'block';
+        } else {
+            heroContent.style.display = 'none';
+        }
+    });
+    
+    document.querySelector('.slider-next').addEventListener('click', () => {
+        nextSlide();
+        resetAutoSlide();
+    });
     </script>
 </body>
 </html>
