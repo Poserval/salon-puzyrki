@@ -137,25 +137,24 @@ body {
     text-align: center;
     color: white;
     padding: 2rem;
-    background: rgba(0,0,0,0.3);
+    background: transparent; /* Полная прозрачность */
     border-radius: 15px;
     margin: 0 1rem;
     top: 50%;
     transform: translateY(-50%);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.2);
+    /* Убираем backdrop-filter и border */
 }
 
 .hero-content h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Усиливаем тень для лучшей читаемости */
 }
 
 .hero-content p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.8); /* Усиливаем тень */
 }
 
 .btn {
@@ -168,11 +167,12 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Добавляем тень кнопке */
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 204, 188, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 204, 188, 0.6);
     background: #ffbbaa;
 }
 
