@@ -174,58 +174,6 @@ body {
     text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
 }
 
-.slider-controls {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    z-index: 3;
-}
-
-.slider-prev,
-.slider-next {
-    background: rgba(255,255,255,0.3);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
-
-.slider-prev:hover,
-.slider-next:hover {
-    background: rgba(255,255,255,0.5);
-}
-
-.slider-dots {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.slider-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.slider-dot.active {
-    background: white;
-}
-
 /* Секция с одной картинкой */
 .single-image-section {
     position: relative;
