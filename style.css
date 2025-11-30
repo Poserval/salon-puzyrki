@@ -137,43 +137,23 @@ body {
     text-align: center;
     color: white;
     padding: 2rem;
-    background: transparent; /* Полная прозрачность */
+    background: transparent;
     border-radius: 15px;
     margin: 0 1rem;
     top: 50%;
     transform: translateY(-50%);
-    /* Убираем backdrop-filter и border */
 }
 
 .hero-content h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Усиливаем тень для лучшей читаемости */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
 .hero-content p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.8); /* Усиливаем тень */
-}
-
-.btn {
-    background: #ffccbc;
-    color: #424242;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Добавляем тень кнопке */
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 204, 188, 0.6);
-    background: #ffbbaa;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
 }
 
 .slider-controls {
@@ -226,6 +206,33 @@ body {
 
 .slider-dot.active {
     background: white;
+}
+
+/* Секция с кнопкой записи */
+.booking-section {
+    background: linear-gradient(135deg, #b2ebf2, #e1bee7);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.booking-btn {
+    background: #ffccbc;
+    color: #424242;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: inline-block;
+}
+
+.booking-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 204, 188, 0.4);
+    background: #ffbbaa;
 }
 
 /* Услуги */
