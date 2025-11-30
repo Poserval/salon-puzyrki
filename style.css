@@ -120,8 +120,8 @@ body {
 /* Герой-слайдер */
 .hero {
     position: relative;
-    height: 70vh;
-    min-height: 500px;
+    height: 75vh;
+    min-height: 550px;
     overflow: hidden;
     margin-top: 0;
 }
@@ -177,8 +177,8 @@ body {
 /* Секция с одной картинкой */
 .single-image-section {
     position: relative;
-    height: 70vh;
-    min-height: 500px;
+    height: 75vh;
+    min-height: 550px;
     overflow: hidden;
     margin-top: 0;
 }
@@ -224,28 +224,32 @@ body {
 
 /* Секция с кнопкой записи */
 .booking-section {
-    background: linear-gradient(135deg, #b2ebf2, #e1bee7);
-    padding: 3rem 0;
+    background: transparent;
+    padding: 0;
     text-align: center;
+    position: relative;
+    margin-top: -60px;
+    z-index: 10;
 }
 
 .booking-btn {
     background: #ffccbc;
     color: #424242;
-    padding: 15px 40px;
+    padding: 20px 50px;
     border: none;
-    border-radius: 25px;
-    font-size: 1.3rem;
+    border-radius: 30px;
+    font-size: 1.4rem;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     display: inline-block;
+    border: 3px solid white;
 }
 
 .booking-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 204, 188, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 204, 188, 0.5);
     background: #ffbbaa;
 }
 
@@ -376,8 +380,8 @@ body {
     .nav-active a:nth-child(4) { animation-delay: 0.4s; }
     
     .hero, .single-image-section {
-        height: 60vh;
-        min-height: 400px;
+        height: 65vh;
+        min-height: 450px;
     }
     
     .hero-content h1, .content-text h1 {
@@ -386,6 +390,15 @@ body {
     
     .hero-content p, .content-text p {
         font-size: 1rem;
+    }
+    
+    .booking-section {
+        margin-top: -50px;
+    }
+    
+    .booking-btn {
+        padding: 18px 40px;
+        font-size: 1.3rem;
     }
     
     .services-grid {
