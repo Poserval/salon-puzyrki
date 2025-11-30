@@ -1,325 +1,199 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Салон красоты "Пузырьки"</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Хедер с фоновой иконкой -->
-    <header class="header">
-        <!-- Логотип поверх хедера -->
-        <div class="logo">
-            <img src="icon/logo-icon.png" alt="Пузырьки">
-        </div>
-    </header>
-
-    <!-- Меню под хедером -->
-    <nav class="nav-menu">
-        <!-- Иконка меню -->
-        <div class="menu-toggle" id="menuToggle">
-            <img src="icon/menu-icon.png" alt="Меню" class="menu-icon">
-        </div>
-        <!-- Менюшки выезжают из иконки -->
-        <div class="nav" id="mainNav">
-            <a href="#" class="nav-link active" data-content="main">Главная</a>
-            <a href="#" class="nav-link" data-content="services">Услуги</a>
-            <a href="#" class="nav-link" data-content="masters">Мастера</a>
-            <a href="#" class="nav-link" data-content="contacts">Контакты</a>
-        </div>
-    </nav>
-
-    <!-- Основной контент -->
-    <main class="main-content">
-        <!-- Главная - слайдер -->
-        <div id="mainContent" class="content-section active">
-            <section class="hero">
-                <div class="hero-slider" id="heroSlider">
-                    <!-- Фото добавляются через JS -->
-                </div>
-                <div class="hero-content">
-                    <h1>Салон красоты "Пузырьки"</h1>
-                    <p>Место, где рождается ваша красота и уверенность</p>
-                </div>
-                <div class="slider-controls">
-                    <button class="slider-prev">‹</button>
-                    <div class="slider-dots" id="sliderDots">
-                        <!-- Точки добавляются через JS -->
-                    </div>
-                    <button class="slider-next">›</button>
-                </div>
-            </section>
-        </div>
-
-        <!-- Услуги - одна картинка -->
-        <div id="servicesContent" class="content-section">
-            <section class="single-image-section">
-                <div class="content-image">
-                    <img src="icon/services/services1.jpg" alt="Наши услуги">
-                </div>
-                <div class="content-text">
-                    <h1>Наши услуги</h1>
-                    <p>Профессиональные услуги красоты для вас</p>
-                </div>
-            </section>
-        </div>
-
-        <!-- Мастера - одна картинка -->
-        <div id="mastersContent" class="content-section">
-            <section class="single-image-section">
-                <div class="content-image">
-                    <img src="icon/masters/master1.jpg" alt="Наши мастера">
-                </div>
-                <div class="content-text">
-                    <h1>Наши мастера</h1>
-                    <p>Профессионалы с большим опытом работы</p>
-                </div>
-            </section>
-        </div>
-
-        <!-- Контакты - одна картинка -->
-        <div id="contactsContent" class="content-section">
-            <section class="single-image-section">
-                <div class="content-image">
-                    <img src="icon/contact/contact1.jpg" alt="Контакты">
-                </div>
-                <div class="content-text">
-                    <h1>Контакты</h1>
-                    <p>Приходите к нам и становитесь еще красивее!</p>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Кнопка записи (всегда видна) -->
-    <section class="booking-section">
-        <div class="container">
-            <button class="btn booking-btn">Записаться онлайн</button>
-        </div>
-    </section>
-
-    <!-- Услуги (только на главной) -->
-    <section class="services" id="servicesBlock">
-        <div class="container">
-            <h2>Наши услуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💇</div>
-                    <h3>Парикмахерские услуги</h3>
-                    <p>Стрижки, укладки, окрашивание</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💅</div>
-                    <h3>Ногтевой сервис</h3>
-                    <p>Маникюр, педикюр, дизайн</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✨</div>
-                    <h3>Косметология</h3>
-                    <p>Уходовые процедуры</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>Визаж</h3>
-                    <p>Профессиональный макияж</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="container">
-            <p>© 2024 Салон красоты "Пузырьки"</p>
-            <p>Телефон: +7 (XXX) XXX-XX-XX</p>
-        </div>
-    </footer>
-
-    <script>
-        // Переключение контента по меню
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Убираем активный класс у всех кнопок
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                // Добавляем активный класс текущей кнопке
-                this.classList.add('active');
-                
-                const contentType = this.getAttribute('data-content');
-                
-                // Скрываем все секции контента
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Показываем нужную секцию
-                document.getElementById(contentType + 'Content').classList.add('active');
-                
-                // Показываем/скрываем блок услуг (только на главной)
-                const servicesBlock = document.getElementById('servicesBlock');
-                if (contentType === 'main') {
-                    servicesBlock.style.display = 'block';
-                } else {
-                    servicesBlock.style.display = 'none';
-                }
+<script>
+    // Переключение контента по меню
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Убираем активный класс у всех кнопок
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            // Добавляем активный класс текущей кнопке
+            this.classList.add('active');
+            
+            const contentType = this.getAttribute('data-content');
+            
+            // Скрываем все секции контента
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
             });
-        });
-
-        // JavaScript для мобильного меню
-        const menuToggle = document.getElementById('menuToggle');
-        const nav = document.getElementById('mainNav');
-        let autoShowExecuted = false;
-
-        function toggleMenu() {
-            nav.classList.toggle('nav-active');
-        }
-
-        menuToggle.addEventListener('click', function() {
-            toggleMenu();
-            autoShowExecuted = true;
-        });
-
-        function autoShowMenu() {
-            if (window.innerWidth <= 768 && !autoShowExecuted && !nav.classList.contains('nav-active')) {
-                setTimeout(function() {
-                    if (!nav.classList.contains('nav-active') && !autoShowExecuted) {
-                        nav.classList.add('nav-active');
-                        autoShowExecuted = true;
-                    }
-                }, 5000);
+            
+            // Показываем нужную секцию
+            document.getElementById(contentType + 'Content').classList.add('active');
+            
+            // Показываем/скрываем блок услуг (только на главной)
+            const servicesBlock = document.getElementById('servicesBlock');
+            if (contentType === 'main') {
+                servicesBlock.style.display = 'block';
+            } else {
+                servicesBlock.style.display = 'none';
             }
-        }
+        });
+    });
 
-        // Слайдер для героя - 15 ФОТО
-        const heroPhotos = [
-            'icon/hero/mobile/Photo1.jpg',
-            'icon/hero/mobile/Photo2.png', 
-            'icon/hero/mobile/Photo3.jpg',
-            'icon/hero/mobile/Photo4.jpg',
-            'icon/hero/mobile/Photo5.jpg',
-            'icon/hero/mobile/Photo6.jpg',
-            'icon/hero/mobile/Photo7.jpg',
-            'icon/hero/mobile/Photo8.jpg',
-            'icon/hero/mobile/Photo9.jpg',
-            'icon/hero/mobile/Photo10.jpg',
-            'icon/hero/mobile/Photo11.jpg',
-            'icon/hero/mobile/Photo12.jpg',
-            'icon/hero/mobile/Photo13.jpg',
-            'icon/hero/mobile/Photo14.jpg',
-            'icon/hero/mobile/Photo15.jpg'
-        ];
-        
-        let currentSlide = 0;
-        let slideInterval;
-        
-        function initSlider() {
-            const slider = document.getElementById('heroSlider');
-            const dotsContainer = document.getElementById('sliderDots');
-            const heroContent = document.querySelector('.hero-content');
-            
-            // Создаем слайды
-            heroPhotos.forEach((photo, index) => {
-                const img = new Image();
-                img.src = photo;
-                img.alt = `Салон красоты Пузырьки ${index + 1}`;
-                img.onerror = function() {
-                    console.error('Ошибка загрузки фото:', photo);
-                };
-                if (index === 0) {
-                    img.classList.add('active');
-                    heroContent.style.display = 'block';
+    // JavaScript для мобильного меню
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    let autoShowExecuted = false;
+
+    function toggleMenu() {
+        nav.classList.toggle('nav-active');
+    }
+
+    menuToggle.addEventListener('click', function() {
+        toggleMenu();
+        autoShowExecuted = true;
+    });
+
+    function autoShowMenu() {
+        if (window.innerWidth <= 768 && !autoShowExecuted && !nav.classList.contains('nav-active')) {
+            setTimeout(function() {
+                if (!nav.classList.contains('nav-active') && !autoShowExecuted) {
+                    nav.classList.add('nav-active');
+                    autoShowExecuted = true;
                 }
-                slider.appendChild(img);
-                
-                // Создаем точки
-                const dot = document.createElement('button');
-                dot.classList.add('slider-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-            
-            // Автопереключение
-            startAutoSlide();
+            }, 5000);
         }
+    }
+
+    // Слайдер для героя - 15 ФОТО
+    const heroPhotos = [
+        'icon/hero/mobile/Photo1.jpg',
+        'icon/hero/mobile/Photo2.jpg', 
+        'icon/hero/mobile/Photo3.jpg',
+        'icon/hero/mobile/Photo4.jpg',
+        'icon/hero/mobile/Photo5.jpg',
+        'icon/hero/mobile/Photo6.jpg',
+        'icon/hero/mobile/Photo7.jpg',
+        'icon/hero/mobile/Photo8.jpg',
+        'icon/hero/mobile/Photo9.jpg',
+        'icon/hero/mobile/Photo10.jpg',
+        'icon/hero/mobile/Photo11.jpg',
+        'icon/hero/mobile/Photo12.jpg',
+        'icon/hero/mobile/Photo13.jpg',
+        'icon/hero/mobile/Photo14.jpg',
+        'icon/hero/mobile/Photo15.jpg'
+    ];
+    
+    let currentSlide = 0;
+    let slideInterval;
+    let startX = 0;
+    let endX = 0;
+    
+    function initSlider() {
+        const slider = document.getElementById('heroSlider');
+        const heroContent = document.querySelector('.hero-content');
         
-        function goToSlide(index) {
-            const heroContent = document.querySelector('.hero-content');
-            currentSlide = index;
-            updateSlider();
-            resetAutoSlide();
-            
-            // Показываем надписи только на первом слайде
+        // Создаем слайды
+        heroPhotos.forEach((photo, index) => {
+            const img = new Image();
+            img.src = photo;
+            img.alt = `Салон красоты Пузырьки ${index + 1}`;
+            img.onerror = function() {
+                console.error('Ошибка загрузки фото:', photo);
+            };
             if (index === 0) {
+                img.classList.add('active');
                 heroContent.style.display = 'block';
-            } else {
-                heroContent.style.display = 'none';
             }
-        }
-        
-        function updateSlider() {
-            const slides = document.querySelectorAll('.hero-slider img');
-            const dots = document.querySelectorAll('.slider-dot');
-            
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentSlide);
-            });
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-        
-        function nextSlide() {
-            const heroContent = document.querySelector('.hero-content');
-            currentSlide = (currentSlide + 1) % heroPhotos.length;
-            updateSlider();
-            
-            // Показываем надписи только на первом слайде
-            if (currentSlide === 0) {
-                heroContent.style.display = 'block';
-            } else {
-                heroContent.style.display = 'none';
-            }
-        }
-        
-        function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, 10000);
-        }
-        
-        function resetAutoSlide() {
-            clearInterval(slideInterval);
-            startAutoSlide();
-        }
-        
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            autoShowMenu();
-            initSlider();
+            slider.appendChild(img);
         });
         
-        window.addEventListener('resize', autoShowMenu);
+        // Добавляем обработчики свайпа
+        addSwipeListeners();
         
-        // Кнопки навигации слайдера
-        document.querySelector('.slider-prev').addEventListener('click', () => {
-            const heroContent = document.querySelector('.hero-content');
-            currentSlide = (currentSlide - 1 + heroPhotos.length) % heroPhotos.length;
-            updateSlider();
-            resetAutoSlide();
-            
-            if (currentSlide === 0) {
-                heroContent.style.display = 'block';
-            } else {
-                heroContent.style.display = 'none';
-            }
-        });
+        // Автопереключение
+        startAutoSlide();
+    }
+    
+    // Функции для свайпа
+    function addSwipeListeners() {
+        const slider = document.getElementById('heroSlider');
         
-        document.querySelector('.slider-next').addEventListener('click', () => {
+        slider.addEventListener('touchstart', handleTouchStart, false);
+        slider.addEventListener('touchmove', handleTouchMove, false);
+        slider.addEventListener('touchend', handleTouchEnd, false);
+    }
+    
+    function handleTouchStart(evt) {
+        startX = evt.touches[0].clientX;
+    }
+    
+    function handleTouchMove(evt) {
+        endX = evt.touches[0].clientX;
+    }
+    
+    function handleTouchEnd() {
+        if (startX - endX > 50) {
+            // Свайп влево - следующий слайд
             nextSlide();
-            resetAutoSlide();
+        } else if (endX - startX > 50) {
+            // Свайп вправо - предыдущий слайд
+            prevSlide();
+        }
+        resetAutoSlide();
+    }
+    
+    function goToSlide(index) {
+        const heroContent = document.querySelector('.hero-content');
+        currentSlide = index;
+        updateSlider();
+        resetAutoSlide();
+        
+        // Показываем надписи только на первом слайде
+        if (index === 0) {
+            heroContent.style.display = 'block';
+        } else {
+            heroContent.style.display = 'none';
+        }
+    }
+    
+    function updateSlider() {
+        const slides = document.querySelectorAll('.hero-slider img');
+        
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
         });
-    </script>
-</body>
-</html>
+    }
+    
+    function nextSlide() {
+        const heroContent = document.querySelector('.hero-content');
+        currentSlide = (currentSlide + 1) % heroPhotos.length;
+        updateSlider();
+        
+        // Показываем надписи только на первом слайде
+        if (currentSlide === 0) {
+            heroContent.style.display = 'block';
+        } else {
+            heroContent.style.display = 'none';
+        }
+    }
+    
+    function prevSlide() {
+        const heroContent = document.querySelector('.hero-content');
+        currentSlide = (currentSlide - 1 + heroPhotos.length) % heroPhotos.length;
+        updateSlider();
+        
+        // Показываем надписи только на первом слайде
+        if (currentSlide === 0) {
+            heroContent.style.display = 'block';
+        } else {
+            heroContent.style.display = 'none';
+        }
+    }
+    
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 10000);
+    }
+    
+    function resetAutoSlide() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+    
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        autoShowMenu();
+        initSlider();
+    });
+    
+    window.addEventListener('resize', autoShowMenu);
+</script>
