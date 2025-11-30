@@ -23,39 +23,84 @@
         </div>
         <!-- Менюшки выезжают из иконки -->
         <div class="nav" id="mainNav">
-            <a href="#">Главная</a>
-            <a href="#">Услуги</a>
-            <a href="#">Мастера</a>
-            <a href="#">Контакты</a>
+            <a href="#" class="nav-link active" data-content="main">Главная</a>
+            <a href="#" class="nav-link" data-content="services">Услуги</a>
+            <a href="#" class="nav-link" data-content="masters">Мастера</a>
+            <a href="#" class="nav-link" data-content="contacts">Контакты</a>
         </div>
     </nav>
 
-    <!-- Герой-слайдер -->
-    <section class="hero">
-        <div class="hero-slider" id="heroSlider">
-            <!-- Фото добавляются через JS -->
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Главная - слайдер -->
+        <div id="mainContent" class="content-section active">
+            <section class="hero">
+                <div class="hero-slider" id="heroSlider">
+                    <!-- Фото добавляются через JS -->
+                </div>
+                <div class="hero-content">
+                    <h1>Салон красоты "Пузырьки"</h1>
+                    <p>Место, где рождается ваша красота и уверенность</p>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-prev">‹</button>
+                    <div class="slider-dots" id="sliderDots">
+                        <!-- Точки добавляются через JS -->
+                    </div>
+                    <button class="slider-next">›</button>
+                </div>
+            </section>
         </div>
-        <div class="hero-content">
-            <h1>Салон красоты "Пузырьки"</h1>
-            <p>Место, где рождается ваша красота и уверенность</p>
-        </div>
-        <div class="slider-controls">
-            <button class="slider-prev">‹</button>
-            <div class="slider-dots" id="sliderDots">
-                <!-- Точки добавляются через JS -->
-            </div>
-            <button class="slider-next">›</button>
-        </div>
-    </section>
 
-    <!-- Кнопка записи под коллажем -->
+        <!-- Услуги - одна картинка -->
+        <div id="servicesContent" class="content-section">
+            <section class="single-image-section">
+                <div class="content-image">
+                    <img src="icon/services/service1.jpg" alt="Наши услуги">
+                </div>
+                <div class="content-text">
+                    <h1>Наши услуги</h1>
+                    <p>Профессиональные услуги красоты для вас</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Мастера - одна картинка -->
+        <div id="mastersContent" class="content-section">
+            <section class="single-image-section">
+                <div class="content-image">
+                    <img src="icon/masters/master1.jpg" alt="Наши мастера">
+                </div>
+                <div class="content-text">
+                    <h1>Наши мастера</h1>
+                    <p>Профессионалы с большим опытом работы</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Контакты - одна картинка -->
+        <div id="contactsContent" class="content-section">
+            <section class="single-image-section">
+                <div class="content-image">
+                    <img src="icon/contact/contact1.jpg" alt="Контакты">
+                </div>
+                <div class="content-text">
+                    <h1>Контакты</h1>
+                    <p>Приходите к нам и становитесь еще красивее!</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Кнопка записи (всегда видна) -->
     <section class="booking-section">
         <div class="container">
             <button class="btn booking-btn">Записаться онлайн</button>
         </div>
     </section>
 
-    <section class="services">
+    <!-- Услуги (только на главной) -->
+    <section class="services" id="servicesBlock">
         <div class="container">
             <h2>Наши услуги</h2>
             <div class="services-grid">
@@ -83,6 +128,7 @@
         </div>
     </section>
 
+    <!-- Футер -->
     <footer class="footer">
         <div class="container">
             <p>© 2024 Салон красоты "Пузырьки"</p>
@@ -91,6 +137,36 @@
     </footer>
 
     <script>
+        // Переключение контента по меню
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                // Добавляем активный класс текущей кнопке
+                this.classList.add('active');
+                
+                const contentType = this.getAttribute('data-content');
+                
+                // Скрываем все секции контента
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Показываем нужную секцию
+                document.getElementById(contentType + 'Content').classList.add('active');
+                
+                // Показываем/скрываем блок услуг (только на главной)
+                const servicesBlock = document.getElementById('servicesBlock');
+                if (contentType === 'main') {
+                    servicesBlock.style.display = 'block';
+                } else {
+                    servicesBlock.style.display = 'none';
+                }
+            });
+        });
+
         // JavaScript для мобильного меню
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('mainNav');
@@ -119,7 +195,7 @@
         // Слайдер для героя - 15 ФОТО
         const heroPhotos = [
             'icon/hero/mobile/Photo1.jpg',
-            'icon/hero/mobile/Photo2.png', 
+            'icon/hero/mobile/Photo2.jpg', 
             'icon/hero/mobile/Photo3.jpg',
             'icon/hero/mobile/Photo4.jpg',
             'icon/hero/mobile/Photo5.jpg',
