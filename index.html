@@ -48,43 +48,18 @@
             </section>
         </div>
 
-        <!-- Услуги - слайдер с ручным управлением -->
-<div id="servicesContent" class="content-section">
-    <section class="services-section">
-        <!-- Слайдер с фото -->
-        <div class="services-slider-container">
-            <div class="services-slider" id="servicesSlider">
-                <!-- Фото услуг добавляются через JS -->
-            </div>
-            
-            <!-- Текст внизу картинки -->
-            <div class="services-text-bottom">
-                <h1>Наши услуги</h1>
-                <p>Профессиональные услуги красоты для вас</p>
-            </div>
-            
-            <!-- Инструкция для пользователя -->
-            <div class="slider-instruction">
-                <span class="arrow-left">←</span>
-                <span>Листайте</span>
-                <span class="arrow-right">→</span>
-            </div>
-            
-            <!-- Навигация слайдера -->
-            <div class="slider-controls">
-                <button class="slider-btn prev-btn" id="servicesPrevBtn" aria-label="Предыдущее фото">
-                    <span>‹</span>
-                </button>
-                <div class="slider-dots" id="servicesDots">
-                    <!-- Точки добавляются через JS -->
+        <!-- Услуги - одна картинка -->
+        <div id="servicesContent" class="content-section">
+            <section class="single-image-section">
+                <div class="content-image">
+                    <img src="icon/services/service1.jpg" alt="Наши услуги">
                 </div>
-                <button class="slider-btn next-btn" id="servicesNextBtn" aria-label="Следующее фото">
-                    <span>›</span>
-                </button>
-            </div>
+                <div class="content-text">
+                    <h1>Наши услуги</h1>
+                    <p>Профессиональные услуги красоты для вас</p>
+                </div>
+            </section>
         </div>
-    </section>
-</div>
 
         <!-- Мастера - одна картинка -->
         <div id="mastersContent" class="content-section">
@@ -109,22 +84,18 @@
         </div>
 
         <!-- Контакты - одна картинка -->
-<div id="contactsContent" class="content-section">
-    <section class="single-image-section">
-        <div class="content-image">
-            <img src="icon/contact/contact1.jpg" alt="Контакты">
+        <div id="contactsContent" class="content-section">
+            <section class="single-image-section">
+                <div class="content-image">
+                    <img src="icon/contact/contact1.jpg" alt="Контакты">
+                </div>
+                <div class="content-text">
+                    <h1>Контакты</h1>
+                    <p>Приходите к нам и становитесь еще красивее!</p>
+                </div>
+            </section>
         </div>
-        <div class="contacts-text-bottom">
-            <h1>Контакты</h1>
-            <p>Приходите к нам и становитесь еще красивее!</p>
-            <div class="contact-details">
-                <p><span>📞</span> Телефон: +7 (XXX) XXX-XX-XX</p>
-                <p><span>📍</span> Адрес: ул. Примерная, д. 123</p>
-                <p><span>🕒</span> Время работы: 9:00 - 21:00</p>
-            </div>
-        </div>
-    </section>
-</div>
+    </main>
 
     <!-- Футер -->
     <footer class="footer">
@@ -154,11 +125,6 @@
                 
                 // Показываем нужную секцию
                 document.getElementById(contentType + 'Content').classList.add('active');
-                
-                // Если перешли на услуги - инициализируем слайдер услуг
-                if (contentType === 'services') {
-                    initServicesSlider();
-                }
             });
         });
 
@@ -260,7 +226,7 @@
             startAutoSlide();
         }
         
-        // Функции для свайпа главного слайдера
+        // Функции для свайпа
         function addSwipeListeners() {
             const slider = document.getElementById('heroSlider');
             
@@ -379,145 +345,10 @@
             startAutoSlide();
         }
         
-        // Слайдер для услуг
-        const servicePhotos = [
-            'icon/services/service1.jpg',
-            'icon/services/service2.jpg',
-            'icon/services/service3.jpg'
-            // Добавьте больше фото по мере необходимости
-        ];
-        
-        let currentServiceSlide = 0;
-        
-        function initServicesSlider() {
-            const slider = document.getElementById('servicesSlider');
-            const dotsContainer = document.getElementById('servicesDots');
-            
-            // Очищаем слайдер и точки
-            slider.innerHTML = '';
-            dotsContainer.innerHTML = '';
-            
-            // Создаем слайды
-            servicePhotos.forEach((photo, index) => {
-                const img = new Image();
-                img.src = photo;
-                img.alt = `Наши услуги ${index + 1}`;
-                img.onerror = function() {
-                    console.error('Ошибка загрузки фото услуг:', photo);
-                    img.style.backgroundColor = '#b2ebf2';
-                    img.style.display = 'flex';
-                    img.style.alignItems = 'center';
-                    img.style.justifyContent = 'center';
-                    img.innerHTML = `<div style="color: white; font-size: 1.5rem;">Услуги ${index + 1}</div>`;
-                };
-                
-                img.style.position = 'absolute';
-                img.style.top = '0';
-                img.style.left = '0';
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '10px';
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.5s ease';
-                
-                if (index === 0) {
-                    img.style.opacity = '1';
-                    img.classList.add('active');
-                } else {
-                    img.classList.remove('active');
-                }
-                
-                slider.appendChild(img);
-                
-                // Создаем точку для этого слайда
-                const dot = document.createElement('button');
-                dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
-                dot.setAttribute('aria-label', `Перейти к слайду ${index + 1}`);
-                dot.addEventListener('click', () => goToServiceSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-            
-            // Добавляем обработчики для кнопок
-            document.getElementById('servicesPrevBtn').addEventListener('click', prevServiceSlide);
-            document.getElementById('servicesNextBtn').addEventListener('click', nextServiceSlide);
-            
-            // Добавляем свайп для мобильных
-            addServicesSwipeListeners();
-        }
-        
-        function addServicesSwipeListeners() {
-            const slider = document.getElementById('servicesSlider');
-            let servicesStartX = 0;
-            let servicesEndX = 0;
-            
-            function handleServicesTouchStart(evt) {
-                servicesStartX = evt.touches[0].clientX;
-            }
-            
-            function handleServicesTouchMove(evt) {
-                servicesEndX = evt.touches[0].clientX;
-            }
-            
-            function handleServicesTouchEnd() {
-                if (servicesStartX - servicesEndX > 50) {
-                    nextServiceSlide();
-                } else if (servicesEndX - servicesStartX > 50) {
-                    prevServiceSlide();
-                }
-            }
-            
-            slider.addEventListener('touchstart', handleServicesTouchStart, false);
-            slider.addEventListener('touchmove', handleServicesTouchMove, false);
-            slider.addEventListener('touchend', handleServicesTouchEnd, false);
-        }
-        
-        function goToServiceSlide(index) {
-            currentServiceSlide = index;
-            updateServicesSlider();
-        }
-        
-        function updateServicesSlider() {
-            const slides = document.querySelectorAll('#servicesSlider img');
-            const dots = document.querySelectorAll('#servicesDots .slider-dot');
-            
-            slides.forEach((slide, index) => {
-                if (index === currentServiceSlide) {
-                    slide.style.opacity = '1';
-                    slide.classList.add('active');
-                } else {
-                    slide.style.opacity = '0';
-                    slide.classList.remove('active');
-                }
-            });
-            
-            dots.forEach((dot, index) => {
-                if (index === currentServiceSlide) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-        
-        function nextServiceSlide() {
-            currentServiceSlide = (currentServiceSlide + 1) % servicePhotos.length;
-            updateServicesSlider();
-        }
-        
-        function prevServiceSlide() {
-            currentServiceSlide = (currentServiceSlide - 1 + servicePhotos.length) % servicePhotos.length;
-            updateServicesSlider();
-        }
-        
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             autoShowMenu();
             initSlider();
-            // Инициализируем слайдер услуг если мы уже на странице услуг
-            if (document.getElementById('servicesContent').classList.contains('active')) {
-                initServicesSlider();
-            }
         });
         
         window.addEventListener('resize', autoShowMenu);
