@@ -269,6 +269,7 @@ body {
     border-radius: 10px;
 }
 
+/* ОБЩИЙ СТИЛЬ ДЛЯ ТЕКСТА */
 .content-text {
     position: absolute;
     z-index: 2;
@@ -298,6 +299,21 @@ body {
     margin-bottom: 1.2rem;
     text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
     line-height: 1.4;
+}
+
+/* ОСОБЫЙ СТИЛЬ ТОЛЬКО ДЛЯ ВКЛАДКИ УСЛУГИ */
+#servicesContent .content-text {
+    top: auto; /* Убираем вертикальное центрирование */
+    bottom: 15px; /* Отступ от нижнего края картинки */
+    transform: translateX(-50%); /* Центрируем только по горизонтали */
+}
+
+/* Убедимся, что остальные вкладки остаются центрированными */
+#mainContent .content-text,
+#mastersContent .content-text,
+#contactsContent .content-text {
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Стили для текста мастера */
