@@ -304,7 +304,7 @@ body {
 /* Секция с кнопкой записи */
 .booking-section {
     background: linear-gradient(135deg, #b2ebf2, #e1bee7);
-    padding: 3rem 0;
+    padding: 1.5rem 0; /* Уменьшил отступы сверху и снизу */
     text-align: center;
 }
 
