@@ -178,6 +178,9 @@
             const slider = document.getElementById('heroSlider');
             const heroContent = document.querySelector('.hero-content');
             
+            // Очищаем слайдер перед добавлением новых изображений
+            slider.innerHTML = '';
+            
             // Создаем слайды
             heroPhotos.forEach((photo, index) => {
                 const img = new Image();
@@ -185,11 +188,31 @@
                 img.alt = `Салон красоты Пузырьки ${index + 1}`;
                 img.onerror = function() {
                     console.error('Ошибка загрузки фото:', photo);
+                    // Если фото не загрузилось, создаем placeholder
+                    img.style.backgroundColor = '#b2ebf2';
+                    img.style.display = 'flex';
+                    img.style.alignItems = 'center';
+                    img.style.justifyContent = 'center';
+                    img.innerHTML = `<div style="color: white; font-size: 1.5rem;">Фото ${index + 1}</div>`;
                 };
+                
+                img.style.position = 'absolute';
+                img.style.top = '0';
+                img.style.left = '0';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 1s ease';
+                
                 if (index === 0) {
+                    img.style.opacity = '1';
                     img.classList.add('active');
-                    heroContent.style.display = 'block';
+                    if (heroContent) heroContent.style.display = 'block';
+                } else {
+                    img.classList.remove('active');
                 }
+                
                 slider.appendChild(img);
             });
             
@@ -207,8 +230,15 @@
             slider.addEventListener('touchstart', handleTouchStart, false);
             slider.addEventListener('touchmove', handleTouchMove, false);
             slider.addEventListener('touchend', handleTouchEnd, false);
+            
+            // Также добавляем обработчики для мыши (для десктопа)
+            slider.addEventListener('mousedown', handleMouseStart, false);
+            slider.addEventListener('mousemove', handleMouseMove, false);
+            slider.addEventListener('mouseup', handleMouseEnd, false);
+            slider.addEventListener('mouseleave', handleMouseEnd, false);
         }
         
+        // Для тач-устройств
         function handleTouchStart(evt) {
             startX = evt.touches[0].clientX;
         }
@@ -218,6 +248,27 @@
         }
         
         function handleTouchEnd() {
+            handleSwipe();
+        }
+        
+        // Для мыши
+        function handleMouseStart(evt) {
+            startX = evt.clientX;
+            document.addEventListener('mousemove', handleMouseMove, false);
+            document.addEventListener('mouseup', handleMouseEnd, false);
+        }
+        
+        function handleMouseMove(evt) {
+            endX = evt.clientX;
+        }
+        
+        function handleMouseEnd() {
+            document.removeEventListener('mousemove', handleMouseMove, false);
+            document.removeEventListener('mouseup', handleMouseEnd, false);
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
             if (startX - endX > 50) {
                 // Свайп влево - следующий слайд
                 nextSlide();
@@ -235,9 +286,9 @@
             resetAutoSlide();
             
             // Показываем надписи только на первом слайде
-            if (index === 0) {
+            if (index === 0 && heroContent) {
                 heroContent.style.display = 'block';
-            } else {
+            } else if (heroContent) {
                 heroContent.style.display = 'none';
             }
         }
@@ -246,7 +297,13 @@
             const slides = document.querySelectorAll('.hero-slider img');
             
             slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentSlide);
+                if (index === currentSlide) {
+                    slide.style.opacity = '1';
+                    slide.classList.add('active');
+                } else {
+                    slide.style.opacity = '0';
+                    slide.classList.remove('active');
+                }
             });
         }
         
@@ -256,9 +313,9 @@
             updateSlider();
             
             // Показываем надписи только на первом слайде
-            if (currentSlide === 0) {
+            if (currentSlide === 0 && heroContent) {
                 heroContent.style.display = 'block';
-            } else {
+            } else if (heroContent) {
                 heroContent.style.display = 'none';
             }
         }
@@ -269,9 +326,9 @@
             updateSlider();
             
             // Показываем надписи только на первом слайде
-            if (currentSlide === 0) {
+            if (currentSlide === 0 && heroContent) {
                 heroContent.style.display = 'block';
-            } else {
+            } else if (heroContent) {
                 heroContent.style.display = 'none';
             }
         }
@@ -292,6 +349,11 @@
         });
         
         window.addEventListener('resize', autoShowMenu);
+        
+        // Проверяем загрузку всех изображений
+        window.addEventListener('load', function() {
+            console.log('Слайдер инициализирован');
+        });
     </script>
 </body>
 </html>
