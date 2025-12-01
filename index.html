@@ -49,33 +49,42 @@
         </div>
 
         <!-- Услуги - слайдер с ручным управлением -->
-        <div id="servicesContent" class="content-section">
-            <section class="services-section">
-                <div class="services-slider-container">
-                    <div class="services-slider" id="servicesSlider">
-                        <!-- Фото услуг добавляются через JS -->
-                    </div>
-                    
-                    <div class="services-content">
-                        <h1>Наши услуги</h1>
-                        <p>Профессиональные услуги красоты для вас</p>
-                    </div>
-                    
-                    <!-- Навигация слайдера -->
-                    <div class="slider-controls">
-                        <button class="slider-btn prev-btn" id="servicesPrevBtn">
-                            <span>‹</span>
-                        </button>
-                        <div class="slider-dots" id="servicesDots">
-                            <!-- Точки добавляются через JS -->
-                        </div>
-                        <button class="slider-btn next-btn" id="servicesNextBtn">
-                            <span>›</span>
-                        </button>
-                    </div>
+<div id="servicesContent" class="content-section">
+    <section class="services-section">
+        <!-- Слайдер с фото -->
+        <div class="services-slider-container">
+            <div class="services-slider" id="servicesSlider">
+                <!-- Фото услуг добавляются через JS -->
+            </div>
+            
+            <!-- Текст внизу картинки -->
+            <div class="services-text-bottom">
+                <h1>Наши услуги</h1>
+                <p>Профессиональные услуги красоты для вас</p>
+            </div>
+            
+            <!-- Инструкция для пользователя -->
+            <div class="slider-instruction">
+                <span class="arrow-left">←</span>
+                <span>Листайте</span>
+                <span class="arrow-right">→</span>
+            </div>
+            
+            <!-- Навигация слайдера -->
+            <div class="slider-controls">
+                <button class="slider-btn prev-btn" id="servicesPrevBtn" aria-label="Предыдущее фото">
+                    <span>‹</span>
+                </button>
+                <div class="slider-dots" id="servicesDots">
+                    <!-- Точки добавляются через JS -->
                 </div>
-            </section>
+                <button class="slider-btn next-btn" id="servicesNextBtn" aria-label="Следующее фото">
+                    <span>›</span>
+                </button>
+            </div>
         </div>
+    </section>
+</div>
 
         <!-- Мастера - одна картинка -->
         <div id="mastersContent" class="content-section">
