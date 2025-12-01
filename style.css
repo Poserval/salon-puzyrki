@@ -20,11 +20,11 @@ body {
     padding: 0 20px;
 }
 
-/* Шапка - УВЕЛИЧИВАЕМ */
+/* Шапка */
 .header {
     background: url('icon/header-icon.png') no-repeat center center;
     background-size: cover;
-    height: 200px; /* Увеличил */
+    height: 200px;
     min-height: 180px;
     position: relative;
     width: 100%;
@@ -33,28 +33,28 @@ body {
 
 @media (max-width: 768px) {
     .header {
-        height: 160px; /* Увеличил */
+        height: 160px;
         min-height: 140px;
     }
 }
 
 @media (max-width: 480px) {
     .header {
-        height: 140px; /* Увеличил */
+        height: 140px;
         min-height: 120px;
     }
 }
 
 .logo {
     position: absolute;
-    top: 15px; /* Опустил немного */
+    top: 15px;
     left: 20px;
-    height: 170px; /* Увеличил */
+    height: 170px;
 }
 
 @media (max-width: 768px) {
     .logo {
-        height: 130px; /* Увеличил */
+        height: 130px;
         top: 10px;
         left: 10px;
     }
@@ -62,7 +62,7 @@ body {
 
 @media (max-width: 480px) {
     .logo {
-        height: 110px; /* Увеличил */
+        height: 110px;
     }
 }
 
@@ -72,7 +72,7 @@ body {
     max-width: none;
 }
 
-/* Меню - тоже УВЕЛИЧИВАЕМ */
+/* Меню под хедером */
 .nav-menu {
     background: white;
     box-shadow: 0 2px 10px rgba(178, 235, 242, 0.2);
@@ -81,7 +81,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 65px; /* Увеличил */
+    height: 65px;
     min-height: 55px;
     padding-right: 20px;
     flex-shrink: 0;
@@ -89,167 +89,12 @@ body {
 
 @media (max-width: 768px) {
     .nav-menu {
-        height: 55px; /* Увеличил */
+        height: 55px;
         min-height: 50px;
         padding-right: 15px;
     }
 }
 
-/* Основной контент - УМЕНЬШАЕМ */
-.main-content {
-    position: relative;
-    flex: 1 1 auto;
-    overflow: hidden;
-    min-height: 300px; /* Уменьшил минимальную высоту */
-}
-
-.content-section {
-    display: none;
-    height: 100%;
-}
-
-.content-section.active {
-    display: block;
-}
-
-/* Картинки - УМЕНЬШАЕМ, добавляем безопасные отступы */
-.hero, .single-image-section {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.hero-slider, .content-image {
-    position: absolute;
-    top: 10px; /* Добавил отступ сверху */
-    left: 10px; /* Добавил отступ слева */
-    width: calc(100% - 20px); /* Уменьшил ширину */
-    height: calc(100% - 20px); /* Уменьшил высоту */
-}
-
-.hero-slider img, .content-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Картинка заполняет область без искажений */
-    object-position: center;
-    border-radius: 10px; /* Добавил скругление краев */
-}
-
-/* Текст - УВЕЛИЧИВАЕМ отступы от краев */
-.hero-content, .content-text {
-    position: absolute;
-    z-index: 2;
-    text-align: center;
-    color: white;
-    padding: 1.5rem; /* Уменьшил немного padding */
-    background: rgba(0, 0, 0, 0.3); /* Добавил полупрозрачный фон */
-    border-radius: 15px;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 40px); /* Увеличил отступ от краев */
-    max-width: 500px; /* Уменьшил максимальную ширину */
-    backdrop-filter: blur(5px); /* Легкое размытие фона */
-}
-
-.hero-content h1, .content-text h1 {
-    font-size: clamp(1.4rem, 3.5vw, 2.2rem); /* Немного уменьшил */
-    margin-bottom: 0.8rem;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-    line-height: 1.2;
-}
-
-.hero-content p, .content-text p {
-    font-size: clamp(0.85rem, 2.2vw, 1.1rem); /* Немного уменьшил */
-    margin-bottom: 1.2rem;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
-    line-height: 1.4;
-}
-
-/* Текст мастера - тоже уменьшаем и добавляем отступы */
-.master-text-content {
-    position: absolute;
-    bottom: 25px; /* Увеличил отступ снизу */
-    left: 25px; /* Увеличил отступ слева */
-    z-index: 3;
-    color: white;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
-    max-width: calc(100% - 50px); /* Уменьшил ширину */
-    background: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
-    padding: 15px;
-    border-radius: 10px;
-    backdrop-filter: blur(3px);
-}
-
-.master-name {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    font-size: clamp(1rem, 2.8vw, 1.6rem); /* Уменьшил */
-    font-weight: bold;
-    margin-bottom: 8px;
-    line-height: 1.1;
-}
-
-.master-position {
-    font-size: clamp(0.7rem, 1.8vw, 0.9rem); /* Уменьшил */
-    font-weight: 600;
-}
-
-.master-experience {
-    font-size: clamp(0.65rem, 1.6vw, 0.85rem); /* Уменьшил */
-}
-
-.master-specialization {
-    font-size: clamp(0.6rem, 1.4vw, 0.8rem); /* Уменьшил */
-}
-
-.approach-title {
-    font-size: clamp(0.65rem, 1.6vw, 0.85rem); /* Уменьшил */
-}
-
-.approach-text {
-    font-size: clamp(0.6rem, 1.4vw, 0.8rem); /* Уменьшил */
-}
-
-.master-education {
-    font-size: clamp(0.6rem, 1.4vw, 0.8rem); /* Уменьшил */
-}
-
-/* Футер - УВЕЛИЧИВАЕМ */
-.footer {
-    background: #424242;
-    color: white;
-    text-align: center;
-    padding: 1.2rem 0; /* Увеличил */
-    height: 90px; /* Увеличил */
-    min-height: 75px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .footer {
-        height: 80px; /* Увеличил */
-        min-height: 65px;
-        padding: 1rem 0;
-    }
-}
-
-.footer .container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem; /* Увеличил */
-}
-
-.footer p {
-    margin: 0;
-    font-size: clamp(0.85rem, 2.2vw, 1.05rem); /* Увеличил */
-}
-
-/* Остальные стили с корректировками */
 .nav {
     display: flex;
     gap: 1rem;
@@ -261,8 +106,8 @@ body {
     text-decoration: none;
     color: #424242;
     font-weight: 500;
-    font-size: clamp(0.85rem, 2.2vw, 0.95rem); /* Увеличил */
-    padding: 0.5rem 0.8rem; /* Увеличил */
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+    padding: 0.5rem 0.8rem;
     transition: all 0.3s;
     opacity: 1;
     transform: translateX(0);
@@ -280,6 +125,7 @@ body {
     background: rgba(178, 235, 242, 0.1);
 }
 
+/* Иконка меню */
 .menu-toggle {
     cursor: pointer;
     z-index: 1001;
@@ -289,17 +135,284 @@ body {
 }
 
 .menu-icon {
-    height: 32px; /* Увеличил */
-    width: 32px; /* Увеличил */
+    height: 32px;
+    width: 32px;
     object-fit: contain;
     transition: transform 0.3s;
 }
 
 @media (max-width: 768px) {
     .menu-icon {
-        height: 28px; /* Увеличил */
-        width: 28px; /* Увеличил */
+        height: 28px;
+        width: 28px;
     }
+}
+
+/* Основной контент */
+.main-content {
+    position: relative;
+    flex: 1 1 auto;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.content-section {
+    display: none;
+    height: 100%;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Герой-слайдер */
+.hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-slider {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+}
+
+.hero-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+/* Стили для текста на главной */
+.hero-content {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 40px);
+    max-width: 500px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content h1 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.9);
+    line-height: 1.2;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.hero-content p {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(1rem, 2.8vw, 1.4rem);
+    margin-bottom: 0;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.9);
+    line-height: 1.5;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.hero-content .line1 {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.hero-content .line2 {
+    display: block;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: bold;
+    color: #ffccbc;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+    letter-spacing: 0.5px;
+}
+
+/* Секция с одной картинкой */
+.single-image-section {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.content-image {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+}
+
+.content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+.content-text {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 40px);
+    max-width: 500px;
+    backdrop-filter: blur(5px);
+}
+
+.content-text h1 {
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    line-height: 1.2;
+}
+
+.content-text p {
+    font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+    margin-bottom: 1.2rem;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
+    line-height: 1.4;
+}
+
+/* Стили для текста мастера */
+.master-text-content {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    z-index: 3;
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+    max-width: calc(100% - 50px);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(3px);
+}
+
+.master-name {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(1rem, 2.8vw, 1.6rem);
+    font-weight: bold;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.master-details {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.master-position {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+    width: 100%;
+}
+
+.master-experience {
+    font-size: clamp(0.65rem, 1.6vw, 0.85rem);
+    line-height: 1.2;
+    text-align: left;
+    width: 100%;
+}
+
+.master-specialization {
+    font-size: clamp(0.6rem, 1.4vw, 0.8rem);
+    line-height: 1.3;
+    text-align: left;
+    width: 100%;
+}
+
+.master-approach {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.approach-title {
+    font-size: clamp(0.65rem, 1.6vw, 0.85rem);
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-style: italic;
+    text-align: left;
+    width: 100%;
+}
+
+.approach-text {
+    font-size: clamp(0.6rem, 1.4vw, 0.8rem);
+    line-height: 1.4;
+    text-align: left;
+    width: 100%;
+}
+
+.master-education {
+    font-size: clamp(0.6rem, 1.4vw, 0.8rem);
+    line-height: 1.3;
+    text-align: left;
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Футер */
+.footer {
+    background: #424242;
+    color: white;
+    text-align: center;
+    padding: 1.2rem 0;
+    height: 90px;
+    min-height: 75px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        height: 80px;
+        min-height: 65px;
+        padding: 1rem 0;
+    }
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.footer p {
+    margin: 0;
+    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
 }
 
 /* Анимации для меню */
@@ -314,17 +427,17 @@ body {
     }
 }
 
-/* Мобильное меню */
+/* Мобильное меню - ВЫЕЗД ИЗ ИКОНКИ */
 @media (max-width: 768px) {
     .nav {
         display: none;
         position: absolute;
         top: 50%;
-        right: 60px; /* Увеличил */
+        right: 60px;
         transform: translateY(-50%);
         background: transparent;
         flex-direction: row;
-        gap: 0.6rem; /* Увеличил */
+        gap: 0.6rem;
         z-index: 1000;
         margin-right: 0;
     }
@@ -336,8 +449,8 @@ body {
     .nav a {
         opacity: 0;
         transform: translateX(15px) scale(0.8);
-        padding: 0.5rem 0.7rem; /* Увеличил */
-        font-size: 0.85rem; /* Увеличил */
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
         background: white;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         border: 1px solid #f0f0f0;
@@ -364,7 +477,7 @@ body {
         position: static !important;
         transform: none !important;
         background: transparent !important;
-        gap: 1.8rem; /* Увеличил */
+        gap: 1.8rem;
     }
     
     .nav a {
